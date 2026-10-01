@@ -25,6 +25,7 @@ class MovieListing extends StatelessWidget {
               Row(
                 children: [
                   const Text('Runtime: 161 minutes'),
+                  const SizedBox(width: 16),
                   const Text('Age rating: 12A'),
                 ],
               ),
