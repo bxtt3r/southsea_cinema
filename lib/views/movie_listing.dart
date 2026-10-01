@@ -34,12 +34,18 @@ class _MovieListingState extends State<MovieListing> {
               fontWeight: FontWeight.bold,
             ),
           ),
+
+            const SizedBox(height: 12), //sized box for spacing
+
             const Text(
               "The nation of Wakanda fights to protect its people from intervening world powers in the wake of King T'Challa's death.",
             style: TextStyle(
               color: cinemaFontWhite,
             ),
           ),
+
+            const SizedBox(height: 12), //sized box for spacing
+          
             Row(
               children: [
                 const Text(
