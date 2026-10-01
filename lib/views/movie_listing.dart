@@ -48,99 +48,108 @@ class _MovieListingState extends State<MovieListing> {
 
             const SizedBox(height: 50),
 
-            const Text(
-              'Southsea Cinema Room',
-              style: TextStyle(
-                color: cinemaFontWhite,
-              ),
-            ),
+            Container(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Southsea Cinema Room',
+                    style: TextStyle(
+                      color: cinemaFontWhite,
+                    ),
+                  ),
 
-            const SizedBox(height: 12),
+                  const SizedBox(height: 12),
 
-            const Text(
-              'Friday 2 Oct 2026, 18:00',
-              style: TextStyle(
-                color: cinemaFontWhite,
-              ),
-            ),
+                  const Text(
+                    'Friday 2 Oct 2026, 18:00',
+                    style: TextStyle(
+                      color: cinemaFontWhite,
+                    ),
+                  ),
 
-            const SizedBox(height: 12), //sized box for spacing
+                  const SizedBox(height: 12), //sized box for spacing
 
-            LayoutBuilder(
-              builder: (context, constraints) {
-                if (constraints.maxWidth > 600) {
-                  return Row(
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      if (constraints.maxWidth > 600) {
+                        return Row(
+                          children: [
+                            const Text(
+                              'Runtime: 161 minutes',
+                              style: TextStyle(color: cinemaFontMuted),
+                            ),
+                            const SizedBox(width: 16),
+                            const Text(
+                              'Age rating: 12A',
+                              style: TextStyle(color: cinemaFontMuted),
+                            ),
+                          ],
+                        );
+                      }
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Runtime: 161 minutes',
+                            style: TextStyle(color: cinemaFontMuted),
+                          ),
+                          const Text(
+                            'Age rating: 12A',
+                            style: TextStyle(color: cinemaFontMuted),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 18),
+
+                  const Text(
+                    'Tickets',
+                    style: TextStyle(
+                      color: cinemaFontWhite,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  Row(
                     children: [
-                      const Text(
-                        'Runtime: 161 minutes',
-                        style: TextStyle(color: cinemaFontMuted),
+                      DropdownMenu<int>(
+                        initialSelection: _ticketQuantity,
+                        onSelected: (int? value) {
+                          if (value != null) {
+                            setState(() {
+                              _ticketQuantity = value;
+                            });
+                          }
+                        },
+                        dropdownMenuEntries: const [
+                          DropdownMenuEntry(value: 1, label: '1'),
+                          DropdownMenuEntry(value: 2, label: '2'),
+                          DropdownMenuEntry(value: 3, label: '3'),
+                          DropdownMenuEntry(value: 4, label: '4'),
+                          DropdownMenuEntry(value: 5, label: '5'),
+                        ],
                       ),
-                      const SizedBox(width: 16),
+
+                      const SizedBox(width: 12),
+
                       const Text(
-                        'Age rating: 12A',
-                        style: TextStyle(color: cinemaFontMuted),
+                        'Adult (£7.50)',
+                        style: TextStyle(
+                          color: cinemaFontWhite,
+                        ),
                       ),
                     ],
-                  );
-                }
-
-                return Column(
-                  children: [
-                    const Text(
-                      'Runtime: 161 minutes',
-                      style: TextStyle(color: cinemaFontMuted),
-                    ),
-                    const Text(
-                      'Age rating: 12A',
-                      style: TextStyle(color: cinemaFontMuted),
-                    ),
-                  ],
-                );
-              },
-            ),
-
-            const SizedBox(height: 18),
-
-            const Text(
-              'Tickets',
-              style: TextStyle(
-                color: cinemaFontWhite,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            Row(
-              children: [
-                DropdownMenu<int>(
-                  initialSelection: _ticketQuantity,
-                  onSelected: (int? value) {
-                    if (value != null) {
-                      setState(() {
-                        _ticketQuantity = value;
-                      });
-                    }
-                  },
-                  dropdownMenuEntries: const [
-                    DropdownMenuEntry(value: 1, label: '1'),
-                    DropdownMenuEntry(value: 2, label: '2'),
-                    DropdownMenuEntry(value: 3, label: '3'),
-                    DropdownMenuEntry(value: 4, label: '4'),
-                    DropdownMenuEntry(value: 5, label: '5'),
-                  ],
-                ),
-
-                const SizedBox(width: 12),
-
-                const Text(
-                  'Adult (£7.50)',
-                  style: TextStyle(
-                    color: cinemaFontWhite,
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
 
             const SizedBox(height: 18),
@@ -156,6 +165,7 @@ class _MovieListingState extends State<MovieListing> {
             ),
 
             const SizedBox(height: 12),
+
             Text(
               _feedbackMessage,
               style: const TextStyle(color: cinemaFontWhite),
