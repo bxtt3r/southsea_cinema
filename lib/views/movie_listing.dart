@@ -47,18 +47,37 @@ class _MovieListingState extends State<MovieListing> {
 
             const SizedBox(height: 12), //sized box for spacing
           
-            Row(
-              children: [
-                const Text(
-                  'Runtime: 161 minutes',
-                  style: TextStyle(color: cinemaFontMuted),
-                ),
-                const SizedBox(width: 16),
-                const Text(
-                  'Age rating: 12A',
-                  style: TextStyle(color: cinemaFontMuted),
-                ),
-              ],
+            LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 600) {
+                  return Row(
+                    children: [
+                      const Text(
+                        'Runtime: 161 minutes',
+                        style: TextStyle(color: cinemaFontMuted),
+                      ),
+                      const SizedBox(width: 16),
+                      const Text(
+                        'Age rating: 12A',
+                        style: TextStyle(color: cinemaFontMuted),
+                      ),
+                    ],
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      const Text(
+                        'Runtime: 161 minutes',
+                        style: TextStyle(color: cinemaFontMuted),
+                      ),
+                      const Text(
+                        'Age rating: 12A',
+                        style: TextStyle(color: cinemaFontMuted),
+                      ),
+                    ],
+                  );
+                }
+              },
             ),
             DropdownMenu<int>(
               initialSelection: 1,
