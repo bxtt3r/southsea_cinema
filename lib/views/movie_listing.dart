@@ -15,7 +15,16 @@ class MovieListing extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body: const SizedBox.shrink(),
+      body: Container(
+        child: Column(
+          children: [
+            const Text('Black Panther: Wakanda Forever'),
+            const Text(
+              "The nation of Wakanda fights to protect its people from intervening world powers in the wake of King T'Challa's death.",
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
