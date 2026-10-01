@@ -42,9 +42,15 @@ class _MovieListingState extends State<MovieListing> {
           ),
             Row(
               children: [
-                const Text('Runtime: 161 minutes'),
+                const Text(
+                  'Runtime: 161 minutes',
+                  style: TextStyle(color: cinemaFontMuted),
+                ),
                 const SizedBox(width: 16),
-                const Text('Age rating: 12A'),
+                const Text(
+                  'Age rating: 12A',
+                  style: TextStyle(color: cinemaFontMuted),
+                ),
               ],
             ),
             DropdownMenu<int>(
