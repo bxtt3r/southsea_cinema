@@ -24,12 +24,22 @@ class _MovieListingState extends State<MovieListing> {
       ),
       drawer: const NavDrawer(),
       body: Container(
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text('Black Panther: Wakanda Forever'),
+            const Text('Black Panther: Wakanda Forever',
+            style: TextStyle(
+              color: cinemaFontWhite,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
             const Text(
               "The nation of Wakanda fights to protect its people from intervening world powers in the wake of King T'Challa's death.",
+            style: TextStyle(
+              color: cinemaFontWhite,
             ),
+          ),
             Row(
               children: [
                 const Text('Runtime: 161 minutes'),
