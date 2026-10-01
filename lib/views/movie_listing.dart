@@ -36,8 +36,26 @@ class _MovieListingState extends State<MovieListing> {
                   const Text('Age rating: 12A'),
                 ],
               ),
+              DropdownMenu<int>(
+                initialSelection: 1,
+                onSelected: (int? value) {
+                  if (value != null) {
+                    setState(() {
+                      _ticketQuantity = value;
+                    });
+                  }
+                },
+                dropdownMenuEntries: [
+                  DropdownMenuEntry(value: 1, label: '1'),
+                  DropdownMenuEntry(value: 2, label: '2'),
+                  DropdownMenuEntry(value: 3, label: '3'),
+                  DropdownMenuEntry(value: 4, label: '4'),
+                  DropdownMenuEntry(value: 5, label: '5'),
+                ],
+              ),
             ],
           ),
-        ));
+        ),
+      );
   }
 }
