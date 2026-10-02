@@ -49,6 +49,8 @@ class _MovieListingState extends State<MovieListing> {
             const SizedBox(height: 50),
 
             Container(
+              color: cinemaSurface,
+              padding: const EdgeInsets.all(16),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
