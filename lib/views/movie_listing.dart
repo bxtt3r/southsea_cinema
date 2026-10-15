@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
-import 'package:southsea_cinema/widgets/nav_drawer.dart';
+import 'package:southsea_cinema/models/movie.dart';
 
 class MovieListing extends StatefulWidget {
-  const MovieListing({super.key});
+  final Movie movie;
+
+  const MovieListing({super.key, required this.movie});
 
   @override
-  State<MovieListing> createState() => _MovieListingState();
+  State<MovieListing> createState() {
+    return _MovieListingState();
+  }
 }
 
 class _MovieListingState extends State<MovieListing> {
@@ -18,74 +22,64 @@ class _MovieListingState extends State<MovieListing> {
     return Scaffold(
       backgroundColor: cinemaBackground,
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: cinemaBrand),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text(appTitle, style: cinemaHeaderStyle),
         backgroundColor: cinemaSurface,
-        iconTheme: const IconThemeData(color: cinemaBrand),
         elevation: 0,
       ),
-      drawer: const NavDrawer(),
-      body: Container(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Black Panther: Wakanda Forever (2022)',
-              style: TextStyle(
+            Text(
+              widget.movie.title,
+              key: const Key('movie-listing-title'),
+              style: const TextStyle(
                 color: cinemaFontWhite,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            const SizedBox(height: 12), //sized box for spacing
-
-            const Text(
-              "Following the death of King T'Challa, Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect the nation of Wakanda from intervening world powers. As the Wakandans struggle to protect their home, they must also face a new threat from the underwater kingdom of Talokan and its ruler, Namor.",
-              style: TextStyle(
-                color: cinemaFontWhite,
-              ),
+            const SizedBox(height: 12),
+            Text(
+              widget.movie.synopsis,
+              style: const TextStyle(color: cinemaFontWhite),
             ),
-
-            const SizedBox(height: 50),
-
+            const SizedBox(height: 32),
             Container(
               color: cinemaSurface,
-              padding: const EdgeInsets.all(16),
               width: double.infinity,
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
                     'Southsea Cinema Room',
-                    style: TextStyle(
-                      color: cinemaFontWhite,
-                    ),
+                    style: TextStyle(color: cinemaFontWhite),
                   ),
-
                   const SizedBox(height: 12),
-
-                  const Text(
-                    'Friday 2 Oct 2026, 18:00',
-                    style: TextStyle(
-                      color: cinemaFontWhite,
-                    ),
+                  Text(
+                    widget.movie.screeningTime,
+                    style: const TextStyle(color: cinemaFontWhite),
                   ),
-
-                  const SizedBox(height: 12), //sized box for spacing
-
+                  const SizedBox(height: 12),
                   LayoutBuilder(
                     builder: (context, constraints) {
                       if (constraints.maxWidth > 600) {
                         return Row(
                           children: [
-                            const Text(
-                              'Runtime: 161 minutes',
-                              style: TextStyle(color: cinemaFontMuted),
+                            Text(
+                              'Runtime: ${widget.movie.runtime}',
+                              style: const TextStyle(color: cinemaFontMuted),
                             ),
                             const SizedBox(width: 16),
-                            const Text(
-                              'Age rating: 12A',
-                              style: TextStyle(color: cinemaFontMuted),
+                            Text(
+                              'Age rating: ${widget.movie.ageRating}',
+                              style: const TextStyle(color: cinemaFontMuted),
                             ),
                           ],
                         );
@@ -94,21 +88,24 @@ class _MovieListingState extends State<MovieListing> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Runtime: 161 minutes',
-                            style: TextStyle(color: cinemaFontMuted),
+                          Text(
+                            'Runtime: ${widget.movie.runtime}',
+                            style: const TextStyle(color: cinemaFontMuted),
                           ),
-                          const Text(
-                            'Age rating: 12A',
-                            style: TextStyle(color: cinemaFontMuted),
+                          Text(
+                            'Age rating: ${widget.movie.ageRating}',
+                            style: const TextStyle(color: cinemaFontMuted),
                           ),
                         ],
                       );
                     },
                   ),
-
                   const SizedBox(height: 18),
-
+                  const Text(
+                    'Select Quantities (Up to 5 in total)',
+                    style: TextStyle(color: cinemaFontMuted),
+                  ),
+                  const SizedBox(height: 12),
                   const Text(
                     'Tickets',
                     style: TextStyle(
@@ -117,9 +114,7 @@ class _MovieListingState extends State<MovieListing> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-
                   const SizedBox(height: 12),
-
                   Row(
                     children: [
                       DropdownMenu<int>(
@@ -139,38 +134,43 @@ class _MovieListingState extends State<MovieListing> {
                           DropdownMenuEntry(value: 5, label: '5'),
                         ],
                       ),
-
                       const SizedBox(width: 12),
-
-                      const Text(
-                        'Adult (£7.50)',
-                        style: TextStyle(
-                          color: cinemaFontWhite,
-                        ),
+                      Text(
+                        'Adult (${widget.movie.formattedPrice})',
+                        style: const TextStyle(color: cinemaFontWhite),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-
             const SizedBox(height: 18),
-
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _feedbackMessage =
-                      '$_ticketQuantity ticket(s) added to your order.';
-                });
-              },
-              child: const Text('Add to order'),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _feedbackMessage =
+                        '$_ticketQuantity ticket(s) added to your order.';
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: cinemaBrand,
+                  foregroundColor: cinemaBackground,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                ),
+                child: const Text('Add to order'),
+              ),
             ),
-
             const SizedBox(height: 12),
-
-            Text(
-              _feedbackMessage,
-              style: const TextStyle(color: cinemaFontWhite),
+            Center(
+              child: Text(
+                _feedbackMessage,
+                key: const Key('booking-feedback'),
+                style: const TextStyle(color: cinemaFontWhite),
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),
