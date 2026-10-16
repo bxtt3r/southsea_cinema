@@ -12,7 +12,7 @@ void main() {
         runtime: '100 minutes',
         screeningTime: 'Saturday 17 October 2026, 18:00',
         ticketPrice: 7.50,
-        posterImagePath: 'assets/images/black_panther.png',
+        posterImagePath: 'assets/images/black_panther.jpg',
       );
 
       expect(movie.id, 'test-film');
@@ -22,7 +22,7 @@ void main() {
       expect(movie.runtime, '100 minutes');
       expect(movie.screeningTime, 'Saturday 17 October 2026, 18:00');
       expect(movie.ticketPrice, 7.50);
-      expect(movie.posterImagePath, 'assets/images/black_panther.png');
+      expect(movie.posterImagePath, 'assets/images/black_panther.jpg');
     });
 
     test('formats a whole-pound price with two decimal places', () {
@@ -34,7 +34,7 @@ void main() {
         runtime: '90 minutes',
         screeningTime: 'Saturday 17 October 2026, 18:00',
         ticketPrice: 8,
-        posterImagePath: 'assets/images/black_panther.png',
+        posterImagePath: 'assets/images/black_panther.jpg',
       );
 
       expect(movie.formattedPrice, '£8.00');
@@ -49,7 +49,7 @@ void main() {
         runtime: '90 minutes',
         screeningTime: 'Saturday 17 October 2026, 18:00',
         ticketPrice: 7.5,
-        posterImagePath: 'assets/images/black_panther.png',
+        posterImagePath: 'assets/images/black_panther.jpg',
       );
 
       expect(movie.formattedPrice, '£7.50');
