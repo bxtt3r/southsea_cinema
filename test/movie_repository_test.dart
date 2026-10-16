@@ -12,8 +12,8 @@ void main() {
       expect(movies[0].id, isNot(movies[1].id));
       expect(movies[0].title, 'Black Panther: Wakanda Forever (2022)');
       expect(movies[1].title, 'The Batman (2022)');
-      expect(movies[0].posterImagePath, 'assets/images/black_panther.jpg');
-      expect(movies[1].posterImagePath, 'assets/images/the_batman.jpg');
+      expect(movies[0].posterImagePath, 'assets/images/black_panther.png');
+      expect(movies[1].posterImagePath, 'assets/images/the_batman.png');
       expect(movies[0].ticketPrice, 7.50);
       expect(movies[1].ticketPrice, 7.50);
     });
