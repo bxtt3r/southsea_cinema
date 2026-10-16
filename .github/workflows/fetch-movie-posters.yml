@@ -28,7 +28,8 @@ jobs:
             "https://upload.wikimedia.org/wikipedia/en/3/3b/Black_Panther_Wakanda_Forever_poster.jpg" \
             --output assets/images/black_panther.jpg
           curl --fail --location --retry 3 \
-            "https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/The_Batman_%28film%29_poster.jpg/300px-The_Batman_%28film%29_poster.jpg" \
+            --user-agent "Mozilla/5.0 (compatible; coursework image asset download)" \
+            "https://resizing.flixster.com/HUwAlW1QAya1vlIePUDv3kdzhIE%3D/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzc1OGFlMDI0LTE1ZTEtNDE4ZS04Y2RmLWNjYzcyOWQyZmMyNi5qcGc%3D" \
             --output assets/images/the_batman.jpg
           file assets/images/black_panther.jpg assets/images/the_batman.jpg
           test "$(file --mime-type -b assets/images/black_panther.jpg)" = "image/jpeg"
