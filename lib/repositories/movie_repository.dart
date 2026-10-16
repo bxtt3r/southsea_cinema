@@ -12,7 +12,7 @@ class MovieRepository {
         runtime: '161 minutes',
         screeningTime: 'Saturday 17 October 2026, 18:00',
         ticketPrice: 7.50,
-        posterImagePath: 'assets/images/black_panther.jpg',
+        posterImagePath: 'assets/images/black_panther.png',
       ),
       Movie(
         id: 'the-batman',
@@ -23,7 +23,7 @@ class MovieRepository {
         runtime: '176 minutes',
         screeningTime: 'Sunday 18 October 2026, 20:00',
         ticketPrice: 7.50,
-        posterImagePath: 'assets/images/the_batman.jpg',
+        posterImagePath: 'assets/images/the_batman.png',
       ),
     ];
   }
