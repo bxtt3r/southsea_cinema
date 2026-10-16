@@ -35,6 +35,15 @@ class _MovieListingState extends State<MovieListing> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: Image.asset(
+                widget.movie.posterImagePath,
+                width: 160,
+                height: 240,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 16),
             Text(
               widget.movie.title,
               key: const Key('movie-listing-title'),
