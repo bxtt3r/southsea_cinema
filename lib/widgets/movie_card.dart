@@ -25,27 +25,11 @@ class MovieCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(2),
-              child: Image.asset(
-                movie.posterImagePath,
-                width: 96,
-                height: 144,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 96,
-                    height: 144,
-                    color: cinemaBackground,
-                    alignment: Alignment.center,
-                    child: const Icon(
-                      Icons.movie,
-                      color: cinemaBrand,
-                      size: 32,
-                    ),
-                  );
-                },
-              ),
+            Image.asset(
+              movie.posterImagePath,
+              width: 96,
+              height: 144,
+              fit: BoxFit.cover,
             ),
             const SizedBox(width: 12),
             Expanded(
