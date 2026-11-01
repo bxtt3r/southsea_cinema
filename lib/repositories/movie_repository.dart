@@ -32,6 +32,20 @@ class MovieRepository {
           posterImagePath: 'assets/images/the_dark_knight.jpeg',
           ticketPrice: 8.50,
       ),
+      Movie(
+        id: 'jaws',
+        title: 'Jaws (1975)',
+        synopsis: 'When a great white shark begins attacking swimmers off '
+            'the coast of a summer holiday town, the local police chief '
+            'teams up with a marine scientist and a seasoned shark hunter '
+            'to stop it.',
+        ageRating: '12',
+        runtime: '2h 4m',
+        screeningTime: 'Saturday 3 Oct 2026, 19:00',
+        posterImagePath: 'assets/images/jaws.jpg',
+        ticketPrice: 8.50,
+      ),
+
     ];
   }
 }
