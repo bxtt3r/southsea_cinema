@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
+import 'package:southsea_cinema/models/movie.dart';
 
 class MovieListing extends StatefulWidget {
-  const MovieListing({super.key});
+  final Movie movie;
+
+  const MovieListing({super.key, required this.movie});
 
   @override
   State<MovieListing> createState() => _MovieListingState();
@@ -27,9 +30,10 @@ class _MovieListingState extends State<MovieListing> {
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Black Panther: Wakanda Forever (2022)',
+            Text(
+              widget.movie.title,
               style: TextStyle(
                 color: cinemaFontWhite,
                 fontSize: 22,
@@ -39,14 +43,23 @@ class _MovieListingState extends State<MovieListing> {
 
             const SizedBox(height: 12), //sized box for spacing
 
-            const Text(
-              "Following the death of King T'Challa, Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect the nation of Wakanda from intervening world powers. As the Wakandans struggle to protect their home, they must also face a new threat from the underwater kingdom of Talokan and its ruler, Namor.",
+            Image.asset(
+              widget.movie.posterImagePath,
+              width: 120,
+              height: 180,
+              fit: BoxFit.cover,
+            ),
+
+            const SizedBox(height: 12),
+
+            Text(
+              widget.movie.synopsis,
               style: TextStyle(
                 color: cinemaFontWhite,
               ),
             ),
 
-            const SizedBox(height: 50),
+            const SizedBox(height: 16),
 
             Container(
               color: cinemaSurface,
@@ -64,8 +77,8 @@ class _MovieListingState extends State<MovieListing> {
 
                   const SizedBox(height: 12),
 
-                  const Text(
-                    'Friday 2 Oct 2026, 18:00',
+                  Text(
+                    widget.movie.screeningTime,
                     style: TextStyle(
                       color: cinemaFontWhite,
                     ),
@@ -78,13 +91,13 @@ class _MovieListingState extends State<MovieListing> {
                       if (constraints.maxWidth > 600) {
                         return Row(
                           children: [
-                            const Text(
-                              'Runtime: 161 minutes',
+                            Text(
+                              'Runtime: ${widget.movie.runtime}',
                               style: TextStyle(color: cinemaFontMuted),
                             ),
                             const SizedBox(width: 16),
-                            const Text(
-                              'Age rating: 12A',
+                            Text(
+                              'Age rating: ${widget.movie.ageRating}',
                               style: TextStyle(color: cinemaFontMuted),
                             ),
                           ],
@@ -94,12 +107,12 @@ class _MovieListingState extends State<MovieListing> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Runtime: 161 minutes',
+                          Text(
+                            'Runtime: ${widget.movie.runtime}',
                             style: TextStyle(color: cinemaFontMuted),
                           ),
-                          const Text(
-                            'Age rating: 12A',
+                          Text(
+                            'Age rating: ${widget.movie.ageRating}',
                             style: TextStyle(color: cinemaFontMuted),
                           ),
                         ],
@@ -142,8 +155,8 @@ class _MovieListingState extends State<MovieListing> {
 
                       const SizedBox(width: 12),
 
-                      const Text(
-                        'Adult (£7.50)',
+                      Text(
+                        'Adult (£${widget.movie.ticketPrice.toStringAsFixed(2)})',
                         style: TextStyle(
                           color: cinemaFontWhite,
                         ),
@@ -163,6 +176,10 @@ class _MovieListingState extends State<MovieListing> {
                       '$_ticketQuantity ticket(s) added to your order.';
                 });
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: cinemaBrand,
+                foregroundColor: cinemaFontWhite,
+              ),              
               child: const Text('Add to order'),
             ),
 
