@@ -29,7 +29,7 @@ class MovieRepository {
           ageRating: '12A',
           runtime: '2h 32m',
           screeningTime: 'Friday 2 Oct 2026, 21:00',
-          posterImagePath: 'assets/images/the_dark_knight.jpg',
+          posterImagePath: 'assets/images/the_dark_knight.jpeg',
           ticketPrice: 8.50,
       ),
     ];
