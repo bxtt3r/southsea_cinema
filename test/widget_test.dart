@@ -7,7 +7,6 @@ import 'package:southsea_cinema/widgets/movie_card.dart';
 
 void main() {
   group('Southsea Cinema widget tests', () {
-
     testWidgets('SouthseaCinemaApp displays HomeView as home',
         (WidgetTester tester) async {
       await tester.pumpWidget(const SouthseaCinemaApp());
@@ -104,6 +103,5 @@ void main() {
         findsOneWidget,
       );
     });
-
   });
 }

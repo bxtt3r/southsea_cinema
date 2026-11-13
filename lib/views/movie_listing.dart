@@ -27,7 +27,6 @@ class _MovieListingState extends State<MovieListing> {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16),
@@ -42,27 +41,21 @@ class _MovieListingState extends State<MovieListing> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               const SizedBox(height: 12),
-
               Image.asset(
                 widget.movie.posterImagePath,
                 width: 120,
                 height: 180,
                 fit: BoxFit.cover,
               ),
-
               const SizedBox(height: 12),
-
               Text(
                 widget.movie.synopsis,
                 style: TextStyle(
                   color: cinemaFontWhite,
                 ),
               ),
-
               const SizedBox(height: 16),
-
               Container(
                 color: cinemaSurface,
                 padding: const EdgeInsets.all(16),
@@ -76,18 +69,14 @@ class _MovieListingState extends State<MovieListing> {
                         color: cinemaFontWhite,
                       ),
                     ),
-
                     const SizedBox(height: 12),
-
                     Text(
                       widget.movie.screeningTime,
                       style: TextStyle(
                         color: cinemaFontWhite,
                       ),
                     ),
-
                     const SizedBox(height: 12),
-
                     LayoutBuilder(
                       builder: (context, constraints) {
                         if (constraints.maxWidth > 600) {
@@ -121,9 +110,7 @@ class _MovieListingState extends State<MovieListing> {
                         );
                       },
                     ),
-
                     const SizedBox(height: 18),
-
                     const Text(
                       'Tickets',
                       style: TextStyle(
@@ -132,9 +119,7 @@ class _MovieListingState extends State<MovieListing> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     const SizedBox(height: 12),
-
                     Row(
                       children: [
                         DropdownMenu<int>(
@@ -154,9 +139,7 @@ class _MovieListingState extends State<MovieListing> {
                             DropdownMenuEntry(value: 5, label: '5'),
                           ],
                         ),
-
                         const SizedBox(width: 12),
-
                         Text(
                           'Adult (£${widget.movie.ticketPrice.toStringAsFixed(2)})',
                           style: TextStyle(
@@ -168,9 +151,7 @@ class _MovieListingState extends State<MovieListing> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 18),
-
               ElevatedButton(
                 onPressed: () {
                   setState(() {
@@ -184,9 +165,7 @@ class _MovieListingState extends State<MovieListing> {
                 ),
                 child: const Text('Add to order'),
               ),
-
               const SizedBox(height: 12),
-
               Text(
                 _feedbackMessage,
                 style: const TextStyle(color: cinemaFontWhite),
