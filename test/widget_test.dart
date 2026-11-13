@@ -68,36 +68,35 @@ void main() {
       expect(find.text('BOOK NOW'), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('Tapping BOOK NOW opens the selected movie listing',
+    testWidgets('Completes the full movie booking flow',
         (WidgetTester tester) async {
       await tester.pumpWidget(const SouthseaCinemaApp());
 
+      // Tap the first BOOK NOW button.
       await tester.tap(find.text('BOOK NOW').first);
       await tester.pumpAndSettle();
 
+      // Check that the correct movie listing opens.
       expect(find.byType(MovieListing), findsOneWidget);
 
+      // Check the movie details.
       expect(
         find.text('Black Panther: Wakanda Forever (2022)'),
         findsOneWidget,
       );
+      expect(find.text('Friday 2 Oct 2026, 18:00'), findsOneWidget);
+      expect(find.text('Runtime: 2h 41m'), findsOneWidget);
+      expect(find.text('Age rating: 12A'), findsOneWidget);
+      expect(find.text('Adult (£8.50)'), findsOneWidget);
 
-      expect(find.text('Add to order'), findsOneWidget);
-    });
-
-    testWidgets('Tapping Add to order displays confirmation',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(const SouthseaCinemaApp());
-
-      await tester.tap(find.text('BOOK NOW').first);
-      await tester.pumpAndSettle();
-
+      // Tap Add to order.
       await tester.ensureVisible(find.text('Add to order'));
       await tester.pumpAndSettle();
 
       await tester.tap(find.text('Add to order'));
       await tester.pump();
 
+      // Check the booking confirmation.
       expect(
         find.text('1 ticket(s) added to your order.'),
         findsOneWidget,
