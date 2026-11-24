@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/models/movie.dart';
+import 'package:southsea_cinema/widgets/primary_button.dart';
 
 class MovieListing extends StatefulWidget {
   final Movie movie;
@@ -20,8 +21,7 @@ class _MovieListingState extends State<MovieListing> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: cinemaBackground,
-      appBar: AppBar(
-        title: const Text(appTitle)),
+      appBar: AppBar(title: const Text(appTitle)),
       drawer: const NavDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -148,19 +148,14 @@ class _MovieListingState extends State<MovieListing> {
                 ),
               ),
               const SizedBox(height: 18),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _feedbackMessage =
-                        '$_ticketQuantity ticket(s) added to your order.';
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: cinemaBrand,
-                  foregroundColor: cinemaFontWhite,
-                ),
-                child: const Text('Add to order'),
-              ),
+              PrimaryButton(
+                  label: 'Add to order',
+                  onPressed: () {
+                    setState(() {
+                      _feedbackMessage =
+                          '$_ticketQuantity ticket(s) added to your order.';
+                    });
+                  }),
               const SizedBox(height: 12),
               Text(
                 _feedbackMessage,
