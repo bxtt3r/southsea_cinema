@@ -188,9 +188,12 @@ class _BasketViewState extends State<BasketView> {
           children: [
             _buildEmptyState(),
             const SizedBox(height: 12),
-            Text(
-              _feedbackMessage,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+            Center(
+              child: Text(
+                _feedbackMessage,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         );
