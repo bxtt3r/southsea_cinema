@@ -53,6 +53,57 @@ class _SettingsViewState extends State<SettingsView> {
     });
   }
 
+  void _clearForm() {
+    _nameController.clear();
+    _addressController.clear();
+    _emailController.clear();
+    setState(() {
+      _receiveNewsletter = false;
+      _feedbackMessage = '';
+    });
+  }
+
+  Widget _buildField(
+    String label,
+    TextEditingController controller, {
+    int maxLines = 1,
+    TextInputType? keyboardType,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(color: cinemaFontMuted)),
+        const SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          maxLines: maxLines,
+          keyboardType: keyboardType,
+          style: const TextStyle(color: cinemaFontWhite),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: cinemaSurface,
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.zero,
+            ),
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.zero,
+              borderSide: BorderSide(color: cinemaFontMuted),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.zero,
+              borderSide: BorderSide(color: cinemaBrand, width: 2),
+            ),
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.close, color: cinemaFontMuted),
+              onPressed: controller.clear,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +117,7 @@ class _SettingsViewState extends State<SettingsView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Customer Profile',
+              'My Settings',
               style: TextStyle(
                 color: cinemaFontWhite,
                 fontSize: 22,
@@ -74,40 +125,23 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: _nameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Full name',
-                hintText: 'Enter your name',
-              ),
-            ),
+            _buildField('Full name', _nameController),
             const SizedBox(height: 16),
-            TextField(
-              controller: _addressController,
-              maxLines: 3,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Delivery address',
-                hintText: 'Enter delivery address',
-              ),
-            ),
+            _buildField('Address', _addressController, maxLines: 4),
             const SizedBox(height: 16),
-            TextField(
-              controller: _emailController,
+            _buildField(
+              'Email Address',
+              _emailController,
               keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Email address',
-                hintText: 'Enter your email',
-              ),
             ),
             const SizedBox(height: 16),
+            const Text('Preferences', style: TextStyle(color: cinemaFontMuted)),
+            const SizedBox(height: 8),
             Row(
               children: [
                 const Expanded(
                   child: Text(
-                    'Receive newsletter and offers',
+                    'Receive news by email',
                     style: TextStyle(color: cinemaFontWhite),
                   ),
                 ),
@@ -122,12 +156,25 @@ class _SettingsViewState extends State<SettingsView> {
               ],
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              child: PrimaryButton(
-                label: 'Save Settings',
-                onPressed: _saveSettings,
-              ),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: _clearForm,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: cinemaSurface,
+                    foregroundColor: cinemaFontWhite,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
+                    ),
+                  ),
+                  child: const Text('CANCEL'),
+                ),
+                const SizedBox(width: 12),
+                PrimaryButton(
+                  label: 'SAVE SETTINGS',
+                  onPressed: _saveSettings,
+                ),
+              ],
             ),
             if (_feedbackMessage.isNotEmpty) ...[
               const SizedBox(height: 12),
@@ -144,4 +191,4 @@ class _SettingsViewState extends State<SettingsView> {
       ),
     );
   }
-}
+} 
