@@ -5,7 +5,6 @@ import 'package:southsea_cinema/main.dart';
 import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
 
-
 void main() {
   setUp(() {
     rootBundle.clear();
