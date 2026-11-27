@@ -17,7 +17,8 @@ const Movie movie1 = Movie(
 const Movie movie2 = Movie(
   id: 'test-movie-2',
   title: 'The Midnight Chase (2026)',
-  synopsis: 'A detective races against time to solve a mysterious disappearance.',
+  synopsis:
+      'A detective races against time to solve a mysterious disappearance.',
   ageRating: '15',
   runtime: '1h 55m',
   screeningTime: 'Saturday 28 Nov 2026, 20:00',

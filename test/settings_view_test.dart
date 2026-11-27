@@ -23,7 +23,8 @@ void main() {
     expect(find.text('SAVE SETTINGS'), findsOneWidget);
   });
 
-  testWidgets('Entering details, toggling the switch and saving shows feedback', (
+  testWidgets('Entering details, toggling the switch and saving shows feedback',
+      (
     WidgetTester tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1600));

@@ -202,7 +202,7 @@ class _BasketViewState extends State<BasketView> {
       }
     } else {
       content = _buildBasketList(repository, basketItems);
-    } 
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle),
